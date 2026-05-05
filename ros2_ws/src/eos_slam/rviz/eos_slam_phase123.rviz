@@ -1,0 +1,92 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/Views
+    Name: Views
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Name: RGB Input
+      Topic:
+        Value: /eos/input/rgb
+      Transport: raw
+
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Name: Depth Colormap
+      Topic:
+        Value: /eos/debug/depth_colormap
+      Transport: raw
+
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Name: Features
+      Topic:
+        Value: /eos/features/image
+      Transport: raw
+
+    - Class: rviz_default_plugins/PointCloud2
+      Enabled: true
+      Name: 3D Features
+      Topic:
+        Value: /eos/features/points_3d
+      Size: 0.02
+      Color: 255; 255; 0
+
+    - Class: rviz_default_plugins/Path
+      Enabled: true
+      Name: Odom Path
+      Topic:
+        Value: /eos/odom/path
+      Color: 0; 170; 255
+      Line Width: 0.03
+
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Name: VO Matches
+      Topic:
+        Value: /eos/vo/debug_matches
+      Transport: raw
+
+    - Class: rviz_default_plugins/Path
+      Enabled: true
+      Name: VO Path
+      Topic:
+        Value: /eos/vo/path
+      Color: 255; 0; 0
+      Line Width: 0.03
+
+    - Class: rviz_default_plugins/PointCloud2
+      Enabled: true
+      Name: LiDAR Front Filtered
+      Topic:
+        Value: /eos/lidar/front_filtered
+      Size: 0.05
+      Color: 0; 255; 0
+
+    - Class: rviz_default_plugins/PointCloud2
+      Enabled: true
+      Name: LiDAR Back Filtered
+      Topic:
+        Value: /eos/lidar/back_filtered
+      Size: 0.05
+      Color: 0; 255; 128
+
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 10.0
+      Name: Current View
+      Pitch: 0.5
+      Target Frame: map
+      Yaw: 0.8

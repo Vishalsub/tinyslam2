@@ -1,27 +1,83 @@
-# ROS 2 build artifacts
-build/
-install/
-log/
-*.launch.pyc
+# Colcon build artifacts
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
 
-# CMake
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+*.so
 
 # IDE
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
+.DS_Store
 
-# Python cache
-__pycache__/
-*.pyc
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
 
-# Binaries and bags
-*.bag
-*.bag.active
-*.out
-*.so
+# Conda
+.env
+conda/
+
+# EVO evaluation
+*.csv
+*.pdf
+*.png
+
+# Compiled
+*.o
 *.a
+*.la
+*.lo
+*.dylib
+*.dll
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+compile_commands.json
+
+# ROS bag files (large data)
+*.bag
+*.db3
+metadata.yaml
+
+# Dataset downloads
+MH_*
+mav0/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.coverage
+.pytest_cache/
+.coverage.*
+
+# Environment
+*.env
+.env.bak
+
+# Planning docs & Claude config
+.claude
+AGENTS.md
+QUICKSTART.md
+docs/implementation_roadmap.md
+docs/plan.md
+docs/plan_analysis.md
