@@ -23,6 +23,8 @@ RELIABLE_QOS = QoSProfile(
 )
 
 TOPIC_MAPPING = {
+    # EuRoC dataset player (eos_dataset_player) — stereo grayscale left camera
+    '/camera/left/image_raw':              {'out': '/eos/input/rgb',             'type': Image,             'qos': SENSOR_QOS},
     '/scene_camera/color/image_raw':      {'out': '/eos/input/rgb',             'type': Image,             'qos': SENSOR_QOS},
     '/scene_camera/depth/image_rect_raw':  {'out': '/eos/input/depth',           'type': Image,             'qos': SENSOR_QOS},
     '/scene_camera/color/camera_info':     {'out': '/eos/input/camera_info',     'type': CameraInfo,        'qos': RELIABLE_QOS},

@@ -29,11 +29,11 @@ public:
       std::bind(&SensorProcessorNode::depth_callback, this, std::placeholders::_1));
 
     info_sub_ = create_subscription<sensor_msgs::msg::CameraInfo>(
-      "/eos/input/camera_info", ros::reliable_qos(),
+      "/eos/input/camera_info", ros::sensor_data_qos(),
       std::bind(&SensorProcessorNode::info_callback, this, std::placeholders::_1));
 
     odom_sub_ = create_subscription<nav_msgs::msg::Odometry>(
-      "/eos/input/odom", ros::reliable_qos(),
+      "/eos/input/odom", ros::sensor_data_qos(),
       std::bind(&SensorProcessorNode::odom_callback, this, std::placeholders::_1));
 
     lidar_front_sub_ = create_subscription<sensor_msgs::msg::PointCloud2>(

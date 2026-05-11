@@ -19,8 +19,14 @@ RGBResult RGBProcessor::process(const sensor_msgs::msg::Image::ConstSharedPtr& m
   RGBResult result;
   result.header = msg->header;
 
-  cv::Mat color = cv_bridge::toCvShare(msg, "bgr8")->image;
-  cv::cvtColor(color, result.raw_gray, cv::COLOR_BGR2GRAY);
+  cv::Mat color;
+  if (msg->encoding == "mono8") {
+    result.raw_gray = cv_bridge::toCvShare(msg, "mono8")->image;
+    cv::cvtColor(result.raw_gray, color, cv::COLOR_GRAY2BGR);
+  } else {
+    color = cv_bridge::toCvShare(msg, "bgr8")->image;
+    cv::cvtColor(color, result.raw_gray, cv::COLOR_BGR2GRAY);
+  }
 
   orb_->detectAndCompute(result.raw_gray, cv::noArray(),
                          result.keypoints, result.descriptors);

@@ -10,6 +10,10 @@ Visualization Manager:
       Enabled: true
       Name: RGB Input
       Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
         Value: /eos/input/rgb
       Transport: raw
 
@@ -17,6 +21,10 @@ Visualization Manager:
       Enabled: true
       Name: Depth Colormap
       Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
         Value: /eos/debug/depth_colormap
       Transport: raw
 
@@ -24,6 +32,10 @@ Visualization Manager:
       Enabled: true
       Name: Features
       Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
         Value: /eos/features/image
       Transport: raw
 
@@ -31,14 +43,22 @@ Visualization Manager:
       Enabled: true
       Name: 3D Features
       Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
         Value: /eos/features/points_3d
-      Size: 0.02
+      Size (m): 0.02
       Color: 255; 255; 0
 
     - Class: rviz_default_plugins/Path
       Enabled: true
       Name: Odom Path
       Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
         Value: /eos/odom/path
       Color: 0; 170; 255
       Line Width: 0.03
@@ -47,6 +67,10 @@ Visualization Manager:
       Enabled: true
       Name: VO Matches
       Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
         Value: /eos/vo/debug_matches
       Transport: raw
 
@@ -54,6 +78,10 @@ Visualization Manager:
       Enabled: true
       Name: VO Path
       Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
         Value: /eos/vo/path
       Color: 255; 0; 0
       Line Width: 0.03
@@ -62,17 +90,61 @@ Visualization Manager:
       Enabled: true
       Name: LiDAR Front Filtered
       Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
         Value: /eos/lidar/front_filtered
-      Size: 0.05
+      Size (m): 0.05
       Color: 0; 255; 0
 
     - Class: rviz_default_plugins/PointCloud2
       Enabled: true
       Name: LiDAR Back Filtered
       Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
         Value: /eos/lidar/back_filtered
-      Size: 0.05
+      Size (m): 0.05
       Color: 0; 255; 128
+
+    - Class: rviz_default_plugins/PointCloud2
+      Enabled: true
+      Name: Map Cloud
+      Topic:
+        Depth: 1
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /eos/map/pointcloud
+      Size (m): 0.04
+      Color: 255; 200; 50
+
+    - Class: rviz_default_plugins/Path
+      Enabled: true
+      Name: Loop-Corrected Path
+      Topic:
+        Depth: 1
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /eos/loop_closure/path
+      Color: 255; 128; 0
+      Line Width: 0.04
+
+    - Class: rviz_default_plugins/Map
+      Enabled: true
+      Name: Occupancy Grid
+      Topic:
+        Depth: 1
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /eos/map/grid
+      Alpha: 0.7
+      Color Scheme: map
 
   Global Options:
     Background Color: 48; 48; 48

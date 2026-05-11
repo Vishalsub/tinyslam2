@@ -1,6 +1,6 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchParameter
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 
@@ -21,8 +21,8 @@ def generate_launch_description():
             name='eos_sensor_bridge',
             output='screen',
             parameters=[{
-                'bridge_tf': LaunchParameter('bridge_tf'),
-                'status_period': LaunchParameter('status_period'),
+                'bridge_tf': LaunchConfiguration('bridge_tf'),
+                'status_period': LaunchConfiguration('status_period'),
             }],
         ),
     ])

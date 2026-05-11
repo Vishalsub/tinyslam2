@@ -18,9 +18,11 @@ public:
   RGBDOdometryNode() : Node("eos_rgbd_odometry") {
     vo_ = std::make_unique<RGBDOdometry>(this);
 
-    rgb_sub_.subscribe(this, "/eos/input/rgb");
-    depth_sub_.subscribe(this, "/eos/input/depth");
-    info_sub_.subscribe(this, "/eos/input/camera_info");
+    // Use SensorDataQoS (BEST_EFFORT) to match the sensor bridge publisher.
+    auto sensor_qos = rclcpp::SensorDataQoS().get_rmw_qos_profile();
+    rgb_sub_.subscribe(this, "/eos/input/rgb", sensor_qos);
+    depth_sub_.subscribe(this, "/eos/input/depth", sensor_qos);
+    info_sub_.subscribe(this, "/eos/input/camera_info", sensor_qos);
 
     sync_ = std::make_shared<Syncer>(SyncPolicy(10), rgb_sub_, depth_sub_, info_sub_);
     sync_->registerCallback(

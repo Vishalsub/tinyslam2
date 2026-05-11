@@ -16,4 +16,20 @@ def generate_launch_description():
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 PathJoinSubstitution([pkg, 'launch', 'rgbd_odometry.launch.py']))),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution([pkg, 'launch', 'mapping.launch.py']))),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution([pkg, 'launch', 'map_saver.launch.py']))),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution([pkg, 'launch', 'loop_closure.launch.py']))),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution([pkg, 'launch', 'nav2_bridge.launch.py']))),
     ])

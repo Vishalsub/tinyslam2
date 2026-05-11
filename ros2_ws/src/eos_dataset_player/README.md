@@ -6,6 +6,22 @@ ROS2 Python package for replaying **EuRoC MAV** dataset to ROS2 topics. Part of 
 
 ---
 
+## Quick start: see something in RViz
+
+Opening RViz **by itself** only loads the config; every display listens to `/eos/...` topics that stay empty until the **dataset player**, **sensor bridge**, and **eos_slam** nodes are running.
+
+After `colcon build` and `source install/setup.bash`:
+
+```bash
+ros2 launch eos_dataset_player euroc_eos_demo.launch.py dataset_path:=/path/to/MH_01_easy
+```
+
+That starts (in order) the EuRoC player, topic bridge, `eos_slam` stack, and RViz. You should see **RGB Input** and **Features** update. Depth / VO / LiDAR panels need RGB-D + `CameraInfo` (not from this EuRoC player alone).
+
+To run RViz separately: `ros2 launch ... euroc_eos_demo.launch.py dataset_path:=... rviz:=false`
+
+---
+
 ## Topics Published
 
 | Topic | Type | Description |
@@ -136,6 +152,28 @@ ros2 run eos_dataset_player dataset_player --ros-args \
 - `numpy`
 
 ---
+
+## Viewing in RViz (EOS-SLAM)
+
+RViz config `eos_slam_phase123.rviz` subscribes to EOS **input** topics such as `/eos/input/rgb`, not to `/camera/left/image_raw`. If you only run `eos_slam` and RViz, image panels show **No Image** until something publishes on `/eos/input/*`.
+
+**Minimum pipeline for EuRoC (stereo grayscale):** run the topic bridge, SLAM nodes, dataset player, then RViz.
+
+```bash
+# Terminal 1 — dataset (set your dataset path)
+ros2 run eos_dataset_player dataset_player --ros-args -p dataset_path:=/path/to/MH_01_easy
+
+# Terminal 2 — relay EuRoC topics into EOS input namespace
+ros2 run eos_sensor_bridge sensor_bridge
+
+# Terminal 3 — EOS nodes
+ros2 launch eos_slam eos_slam_phase123.launch.py
+
+# Terminal 4 — RViz
+ros2 run rviz2 rviz2 -d $(ros2 pkg prefix eos_slam)/share/eos_slam/rviz/eos_slam_phase123.rviz
+```
+
+After sourcing `install/setup.bash` in each terminal, you should see **RGB Input** and **Features** update. Depth colormap, 3D features, VO, and LiDAR panels expect **RGB-D** (depth + `CameraInfo`) or LiDAR topics that this dataset player does not publish; use a simulator or bag with `/scene_camera/...` style topics for those displays.
 
 ## Architecture
 
